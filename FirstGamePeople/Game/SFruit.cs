@@ -16,7 +16,7 @@ namespace FirstGamePeople.Game
 
         public override void Draw(SScreen screen)
         {
-            throw new Exception();
+            throw new Exception(); //popa
         }
     }
 }
