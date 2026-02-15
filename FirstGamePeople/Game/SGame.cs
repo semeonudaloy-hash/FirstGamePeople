@@ -15,14 +15,22 @@ namespace FirstGamePeople.Game
 
         public string Initialize()
         {
-            _screen = new SScreen(29, 100);
-            _human = new SCharacter(20, 20, 100);
+            _screen = new SScreen(100, 29);
+            _human = new SCharacter(80, 10, 100);
+            _walls.Add(new SWall(1,1,10));
+            _walls.Add(new SWall(5, 5, 0));
+            _walls.Add(new SWall(10, 10, -10));
+            _walls.Add(new SWall(15, 15, -20));
             return "";
         }
 
         public void Start()
         {
             _screen.Clear();
+            for(int i = 0; i < _walls.Count; i++)
+            {
+                _walls[i].Draw(_screen);
+            }
             _human.Draw(_screen);
             _screen.Draw();
         }

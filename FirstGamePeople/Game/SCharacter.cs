@@ -11,26 +11,36 @@ namespace FirstGamePeople.Game
 
         private SHealth _health = new SHealth();
         private SPosition _position = new SPosition();
+        private bool _openEyes = true;
 
         public SHealth Health { get => _health;}
         public SPosition Position { get => _position;}
-        
+        public bool OpenEyes { get => _openEyes; set => _openEyes = value; }
+
         public SCharacter(int x, int y, int health)
         {
+          
             _position.X = x;
             _position.Y = y;
             _position.Width = 6;
             _position.Height = 4;
-            _health.Health = health;
+
+            if (health > 0)
+            {
+                _health.Health = health;
+            }
+            else //<=0
+            {
+                _health.Health = 100;
+            }
         }
 
         public override void Draw(SScreen screen)
         {
-            screen.DrawString(10, 3, "/----\\");
-            screen.DrawString(10, 4, "|0  0|");
-            screen.DrawString(10, 5, "| -- |");
-            screen.DrawString(10, 6, "\\____/");
-
+            screen.DrawString(_position.X, _position.Y + 0, "/----\\");
+            screen.DrawString(_position.X, _position.Y + 1, "|0  0|");
+            screen.DrawString(_position.X, _position.Y + 2, "| -- |");
+            screen.DrawString(_position.X, _position.Y + 3, "\\____/");
         }
     }
 }

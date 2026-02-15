@@ -12,7 +12,7 @@ namespace FirstGamePeople.Game
         private int _rows = 0; //29
         private int _cols = 0; //100
 
-        public SScreen(int rows,int cols)
+        public SScreen(int cols,int rows)
         {
             _rows = rows;
             _cols = cols;
