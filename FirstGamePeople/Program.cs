@@ -11,6 +11,7 @@ namespace FirstGamePeople
     {
         static void Main(string[] args)
         {
+            //
             SGame game = new SGame();
             string error = game.Initialize();
             if (error != "")
