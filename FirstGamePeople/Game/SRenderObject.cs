@@ -8,6 +8,6 @@ namespace FirstGamePeople.Game
 {
     public abstract class SRenderObject
     {
-        public abstract void Draw(SScreen screen);
+        public abstract void Draw(SScreen screen);    
     }
 }
