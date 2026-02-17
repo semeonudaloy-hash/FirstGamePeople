@@ -19,7 +19,7 @@ namespace FirstGamePeople.Game
 
         public SCharacter(int x, int y, int health)
         {
-          
+            
             _position.X = x;
             _position.Y = y;
             _position.Width = 6;
@@ -29,7 +29,7 @@ namespace FirstGamePeople.Game
             {
                 _health.Health = health;
             }
-            else //<=0
+            else // <=0
             {
                 _health.Health = 100;
             }

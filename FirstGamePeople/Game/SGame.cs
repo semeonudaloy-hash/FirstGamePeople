@@ -21,6 +21,10 @@ namespace FirstGamePeople.Game
             _walls.Add(new SWall(5, 5, 0));
             _walls.Add(new SWall(10, 10, -10));
             _walls.Add(new SWall(15, 15, -20));
+            _fruits.Add(new SFruit(40, 10, -10));
+            _fruits.Add(new SFruit(50, 10, 10));
+            _fruits.Add(new SFruit(40, 20, 10));
+            _fruits.Add(new SFruit(50, 20, -10));
             return "";
         }
 
