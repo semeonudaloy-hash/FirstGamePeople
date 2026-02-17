@@ -38,7 +38,15 @@ namespace FirstGamePeople.Game
         public override void Draw(SScreen screen)
         {
             screen.DrawString(_position.X, _position.Y + 0, "/----\\");
-            screen.DrawString(_position.X, _position.Y + 1, "|0  0|");
+            if (_openEyes)
+            {
+                screen.DrawString(_position.X, _position.Y + 1, "|0  0|");
+            }
+            else
+            {
+                screen.DrawString(_position.X, _position.Y + 1, "|-  -|");
+            }
+     
             screen.DrawString(_position.X, _position.Y + 2, "| -- |");
             screen.DrawString(_position.X, _position.Y + 3, "\\____/");
         }
