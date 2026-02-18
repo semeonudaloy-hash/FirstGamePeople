@@ -13,7 +13,7 @@ namespace FirstGamePeople.Game
 
         public SHealth Health { get => _health;}
         public SPosition Position { get => _position;}
-        public SWall(int x, int y, int health) 
+        public SWall(int x, int y, int health) : base()
         {
             _position.X = x;
             _position.Y = y;

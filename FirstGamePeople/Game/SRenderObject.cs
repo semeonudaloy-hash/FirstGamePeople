@@ -6,8 +6,31 @@ using System.Threading.Tasks;
 
 namespace FirstGamePeople.Game
 {
-    public abstract class SRenderObject
+    public class SRenderObject
     {
-        public abstract void Draw(SScreen screen);    
+        private static List<SRenderObject> _renderList = new List<SRenderObject>();
+
+        public static List<SRenderObject> RenderList
+        {
+            get
+            {
+                return _renderList;
+            }
+        }
+
+        public virtual void Draw(SScreen screen)
+        {
+
+        }
+
+        public SRenderObject()
+        {
+            _renderList.Add(this);
+        }
+
+        public void Unregister()
+        {
+            _renderList.Remove(this);
+        }
     }
 }

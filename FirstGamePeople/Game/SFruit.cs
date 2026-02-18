@@ -14,7 +14,7 @@ namespace FirstGamePeople.Game
         public SHealth Health { get => _health; set => _health = value; }
         public SPosition Position { get => _position; set => _position = value; }
 
-        public SFruit(int x, int y, int health)
+        public SFruit(int x, int y, int health) : base()
         {
             _position.X = x;
             _position.Y = y;
