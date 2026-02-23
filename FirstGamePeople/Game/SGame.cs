@@ -10,24 +10,30 @@ namespace FirstGamePeople.Game
     public class SGame
     {
         private SScreen _screen = null;
+        private STimers _timers = null;
         private SCharacter _human = null;
         private SCharacter _human1 = null;
+        private SCharacter _human2 = null;
         private List<SFruit> _fruits = new List<SFruit>();
         private List<SWall> _walls = new List<SWall>();
+
+        private int _direction = 1; 
         
         public string Initialize()
         {
+            _timers = new STimers();
             _screen = new SScreen(100, 29);
-            _walls.Add(new SWall(1, 1, 10));
-            _walls.Add(new SWall(5, 5, 0));
-            _walls.Add(new SWall(10, 10, -10));
-            _walls.Add(new SWall(15, 15, -20));
-            _fruits.Add(new SFruit(40, 10, -10));
-            _fruits.Add(new SFruit(50, 10, 10));
-            _fruits.Add(new SFruit(40, 20, 10));
-            _fruits.Add(new SFruit(50, 20, -10));
-            _human = new SCharacter(80, 10, 100);
-            
+            //_walls.Add(new SWall(1, 1, 10));
+            //_walls.Add(new SWall(5, 5, 0));
+            //_walls.Add(new SWall(10, 10, -10));
+            //_walls.Add(new SWall(15, 15, -20));
+            //_fruits.Add(new SFruit(40, 10, -10));
+            //_fruits.Add(new SFruit(50, 10, 10));
+            //_fruits.Add(new SFruit(40, 20, 10));
+            //_fruits.Add(new SFruit(50, 20, -10));
+            _human = new SCharacter(20, 10, 100);
+            _human1 = new SCharacter(10, 10, 100);
+            _human2 = new SCharacter(30, 10, 100);
             return "";
         }
 
@@ -35,8 +41,7 @@ namespace FirstGamePeople.Game
         {
             ConsoleKeyInfo keyInfo;
 
-            int numFrame = 1;
-
+           
             while (true)
             {
                 //Опрос клавиатуры и реакция на нажатые клавиши
@@ -54,19 +59,11 @@ namespace FirstGamePeople.Game
                         break;
                     }
 
-                    EventFromUser(keyInfo);
+                    EventKey(keyInfo);
                 }
 
-                Process(numFrame);
+                Process();
                 
-                if(numFrame >= 50)
-                {
-                    numFrame = 1;
-                }
-                else
-                {
-                    numFrame++;
-                }
 
                 //отрисовка всех игровых объектов
                 _screen.Clear();
@@ -76,6 +73,8 @@ namespace FirstGamePeople.Game
                 }
                 _screen.Draw();
 
+                _timers.Tick();
+
                 Thread.Sleep(20);
             }
 
@@ -84,7 +83,7 @@ namespace FirstGamePeople.Game
             Console.WriteLine("Good bye!!!");
         }
 
-        public void EventFromUser(ConsoleKeyInfo keyInfo)
+        public void EventKey(ConsoleKeyInfo keyInfo)
         {
             //////////////////////////
             if (keyInfo.Key == ConsoleKey.W)
@@ -130,15 +129,72 @@ namespace FirstGamePeople.Game
             }
         }
 
-        public void Process(int numFrame)
+        public void Process()
         {
-            if(numFrame < 40)
+            if(_timers.GetTimer("blink") == 0)
             {
-                _human?.OpenEyes();
+                if(_human.IsOpenEyes)
+                {
+                    _human.CloseEyes();
+
+                    _timers.StartTimer("blink", 5);
+                }
+                else
+                {
+                    _human.OpenEyes();
+
+                    _timers.StartTimer("blink", 20);
+                }
             }
-            else
+
+            if (_timers.GetTimer("blink1") == 0)
             {
-                _human?.CloseEyes();
+                if (_human1.IsOpenEyes)
+                {
+                    _human1.CloseEyes();
+
+                    _timers.StartTimer("blink1", 10);
+                }
+                else
+                {
+                    _human1.OpenEyes();
+
+                    _timers.StartTimer("blink1", 40);
+                }
+            }
+
+            if (_timers.GetTimer("blink2") == 0)
+            {
+                if (_human2.IsOpenEyes)
+                {
+                    _human2.CloseEyes();
+
+                    _timers.StartTimer("blink2", 5);
+                }
+                else
+                {
+                    _human2.OpenEyes();
+
+                    _timers.StartTimer("blink2", 5);
+                }
+            }
+
+
+
+            if (_timers.GetTimer("walk") == 0)
+            {
+                _timers.StartTimer("walk", 10);
+
+                if(_human.Position.Y <= 0)
+                {
+                    _direction = 1;
+                }
+                if(_human.Position.Y > 24)
+                {
+                    _direction = -1;
+                }
+
+                _human.Position.Y = _human.Position.Y + _direction;
             }
         }
     }

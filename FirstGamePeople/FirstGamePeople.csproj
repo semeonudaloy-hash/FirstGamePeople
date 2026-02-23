@@ -50,6 +50,7 @@
     <Compile Include="Game\SPosition.cs" />
     <Compile Include="Game\SRenderObject.cs" />
     <Compile Include="Game\SScreen.cs" />
+    <Compile Include="Game\STimers.cs" />
     <Compile Include="Game\SWall.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
