@@ -49,6 +49,7 @@ namespace FirstGamePeople.Game
             }
         }
         
+        // получение текущего значения таймера
         public int GetTimer(string name)
         {
             if (_timers.ContainsKey(name))
@@ -63,6 +64,7 @@ namespace FirstGamePeople.Game
             }
         }
         
+        // процедура пересчета таймеров
         public void Tick()
         {
             var keys = _timers.Keys.ToArray();
@@ -84,6 +86,7 @@ namespace FirstGamePeople.Game
                 }
 
             }
+
         }
     }
 }

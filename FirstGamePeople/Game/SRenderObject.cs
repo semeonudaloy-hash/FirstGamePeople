@@ -32,5 +32,28 @@ namespace FirstGamePeople.Game
         {
             _renderList.Remove(this);
         }
+
+        // архив детей и 1 человек с которым м все это сравниваем
+        public List<SRenderObject> CheckCollision(SRenderObject obj, SDirect direct, int move, out int avaliableMove)
+        {
+            var res = new List<SRenderObject>();
+
+            avaliableMove = 0;
+
+            for (int i = 0; i < _renderList.Count; i++)
+            {
+                var checkObj = _renderList[i];
+
+                if (checkObj.Equals(obj))
+                {
+                    continue;
+                }
+
+
+            }
+
+            return res;
+        }
+
     }
 }

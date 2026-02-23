@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,9 +44,6 @@ namespace FirstGamePeople.Game
                 screen.DrawString(_position.X, _position.Y + 3, "<^^^>");
                 screen.DrawString(_position.X, _position.Y + 4, "<___>");
             }
-                
-
         }
-        
     }
 }

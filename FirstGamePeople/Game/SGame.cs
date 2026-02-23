@@ -23,17 +23,16 @@ namespace FirstGamePeople.Game
         {
             _timers = new STimers();
             _screen = new SScreen(100, 29);
-            //_walls.Add(new SWall(1, 1, 10));
-            //_walls.Add(new SWall(5, 5, 0));
-            //_walls.Add(new SWall(10, 10, -10));
-            //_walls.Add(new SWall(15, 15, -20));
+            _walls.Add(new SWall(1, 1, 10));
+            _walls.Add(new SWall(5, 5, 0));
+            _walls.Add(new SWall(10, 10, -10));
+            _walls.Add(new SWall(15, 15, -20));
             //_fruits.Add(new SFruit(40, 10, -10));
             //_fruits.Add(new SFruit(50, 10, 10));
             //_fruits.Add(new SFruit(40, 20, 10));
             //_fruits.Add(new SFruit(50, 20, -10));
             _human = new SCharacter(20, 10, 100);
-            _human1 = new SCharacter(10, 10, 100);
-            _human2 = new SCharacter(30, 10, 100);
+            
             return "";
         }
 
@@ -147,55 +146,6 @@ namespace FirstGamePeople.Game
                 }
             }
 
-            if (_timers.GetTimer("blink1") == 0)
-            {
-                if (_human1.IsOpenEyes)
-                {
-                    _human1.CloseEyes();
-
-                    _timers.StartTimer("blink1", 10);
-                }
-                else
-                {
-                    _human1.OpenEyes();
-
-                    _timers.StartTimer("blink1", 40);
-                }
-            }
-
-            if (_timers.GetTimer("blink2") == 0)
-            {
-                if (_human2.IsOpenEyes)
-                {
-                    _human2.CloseEyes();
-
-                    _timers.StartTimer("blink2", 5);
-                }
-                else
-                {
-                    _human2.OpenEyes();
-
-                    _timers.StartTimer("blink2", 5);
-                }
-            }
-
-
-
-            if (_timers.GetTimer("walk") == 0)
-            {
-                _timers.StartTimer("walk", 10);
-
-                if(_human.Position.Y <= 0)
-                {
-                    _direction = 1;
-                }
-                if(_human.Position.Y > 24)
-                {
-                    _direction = -1;
-                }
-
-                _human.Position.Y = _human.Position.Y + _direction;
-            }
         }
     }
 }
