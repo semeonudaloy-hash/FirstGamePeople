@@ -8,14 +8,64 @@ namespace FirstGamePeople.Game
 {
     public class SPosition
     {
-        private int _x = 0;
-        private int _y = 0;
-        private int _width = 0;
-        private int _height = 0;
+        private SPoint _location = new SPoint();
 
-        public int X { get => _x; set => _x = value; }
-        public int Y { get => _y; set => _y = value; }
-        public int Width { get => _width; set => _width = value; }
-        public int Height { get => _height; set => _height = value; }
+        private SSize _size = new SSize();
+
+        public SPoint Location { get => _location; set => _location = value; }
+        public SSize Size { get => _size; set => _size = value; }
+
+        private bool IntersectPoint(SPoint point)
+        {
+            if(point.X >= _location.X && 
+                point.X < _location.X + _size.Width &&
+                point.Y >= _location.Y &&
+                point.Y < _location.Y + _size.Height)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IntersectRect(SPosition position)
+        {
+            List<SPoint> points = position.GetAllVertex();
+            for (int i = 0; i < points.Count; i++)
+            {
+                SPoint point = points[i];
+                bool tmp = IntersectPoint(point);
+                if(tmp)
+                {
+                    return true;
+                }
+                
+            }
+
+            points = position.GetAllVertex();
+            for (int i = 0; i < points.Count; i++)
+            {
+                SPoint point = points[i];
+                bool tmp = IntersectPoint(point);
+                if (tmp)
+                {
+                    return true;
+                }
+
+            }
+
+            return false;
+        }
+
+        private List<SPoint> GetAllVertex()
+        {
+            return new List<SPoint>() 
+            {
+                new SPoint(_location.X,_location.Y),
+                new SPoint(_location.X + _size.Width,_location.Y),
+                new SPoint(_location.X + _size.Width,_location.Y + _size.Height),
+                new SPoint(_location.X, _location.Y + _size.Height),
+            };
+        }
+
     }
 }

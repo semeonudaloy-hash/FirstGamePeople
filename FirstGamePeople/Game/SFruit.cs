@@ -10,18 +10,13 @@ namespace FirstGamePeople.Game
     public class SFruit : SRenderObject
     {
         private SHealth _health = new SHealth();
-        private SPosition _position = new SPosition();
-
+        
         public SHealth Health { get => _health; set => _health = value; }
-        public SPosition Position { get => _position; set => _position = value; }
-
+        
         public SFruit(int x, int y, int health) : base()
         {
-            _position.X = x;
-            _position.Y = y;
-            _position.Width = 5;
-            _position.Height = 5;
-
+            Position.Location = new SPoint(x, y);
+            Position.Size = new SSize(5, 5);
             _health.Health = health;
         }
        
@@ -30,19 +25,19 @@ namespace FirstGamePeople.Game
         {
             if (_health.Health > 0)
             {
-                screen.DrawString(_position.X, _position.Y + 0, "  ^  ");
-                screen.DrawString(_position.X, _position.Y + 1, " /.\\");
-                screen.DrawString(_position.X, _position.Y + 2, "/...\\");
-                screen.DrawString(_position.X, _position.Y + 3, "\\___/");
-                screen.DrawString(_position.X, _position.Y + 4, "  /  ");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 0, "  ^  ");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 1, " /.\\");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 2, "/...\\");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 3, "\\___/");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 4, "  /  ");
             }
             else
             {
-                screen.DrawString(_position.X, _position.Y + 0, "  /  ");
-                screen.DrawString(_position.X, _position.Y + 1, "<^^^>");
-                screen.DrawString(_position.X, _position.Y + 2, "<^^^>");
-                screen.DrawString(_position.X, _position.Y + 3, "<^^^>");
-                screen.DrawString(_position.X, _position.Y + 4, "<___>");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 0, "  /  ");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 1, "<^^^>");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 2, "<^^^>");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 3, "<^^^>");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 4, "<___>");
             }
         }
     }

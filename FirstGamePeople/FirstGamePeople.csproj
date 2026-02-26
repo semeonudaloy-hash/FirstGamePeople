@@ -47,9 +47,11 @@
     <Compile Include="Game\SFruit.cs" />
     <Compile Include="Game\SGame.cs" />
     <Compile Include="Game\SHealth.cs" />
+    <Compile Include="Game\SPoint.cs" />
     <Compile Include="Game\SPosition.cs" />
     <Compile Include="Game\SRenderObject.cs" />
     <Compile Include="Game\SScreen.cs" />
+    <Compile Include="Game\SSize.cs" />
     <Compile Include="Game\STimers.cs" />
     <Compile Include="Game\SWall.cs" />
     <Compile Include="Program.cs" />

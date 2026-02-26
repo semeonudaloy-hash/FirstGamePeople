@@ -18,12 +18,10 @@ namespace FirstGamePeople.Game
     {
 
         private SHealth _health = new SHealth();
-        private SPosition _position = new SPosition();
         private bool _isOpenEyes = true;
         private int _speed = 1;
 
         public SHealth Health { get => _health;}
-        public SPosition Position { get => _position;}
         public bool IsOpenEyes { get => _isOpenEyes;}
         public int Speed
         {
@@ -37,11 +35,9 @@ namespace FirstGamePeople.Game
 
         public SCharacter(int x, int y, int health) : base()
         {
-            _position.X = x;
-            _position.Y = y;
-            _position.Width = 6;
-            _position.Height = 4;
-
+            Position.Location = new SPoint(x, y);
+            Position.Size = new SSize(6, 4);
+           
             if (health > 0)
             {
                 _health.Health = health;
@@ -55,19 +51,19 @@ namespace FirstGamePeople.Game
         public override void Draw(SScreen screen)
         {
             //screen.DrawString(_position.X, _position.Y - 2, _speed.ToString());
-            screen.DrawString(_position.X, _position.Y - 1, " \\  / ");
-            screen.DrawString(_position.X, _position.Y + 0, "/----\\");
+            screen.DrawString(Position.Location.X, Position.Location.Y - 1, " \\  / ");
+            screen.DrawString(Position.Location.X, Position.Location.Y + 0, "/----\\");
             if (_isOpenEyes)
             {
-                screen.DrawString(_position.X, _position.Y + 1, "|0  0|");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 1, "|0  0|");
             }
             else
             {
-                screen.DrawString(_position.X, _position.Y + 1, "|-  -|");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 1, "|-  -|");
             }
      
-            screen.DrawString(_position.X, _position.Y + 2, "| -- |");
-            screen.DrawString(_position.X, _position.Y + 3, "\\____/");
+            screen.DrawString(Position.Location.X, Position.Location.Y + 2, "| -- |");
+            screen.DrawString(Position.Location.X, Position.Location.Y + 3, "\\____/");
         }
 
         public void Run(SDirect direct)
@@ -75,16 +71,16 @@ namespace FirstGamePeople.Game
             switch (direct)
             {
                 case SDirect.Left:
-                    _position.X = _position.X - _speed;
+                    Position.Location.X = Position.Location.X - _speed;
                     break;
                 case SDirect.Right:
-                    _position.X = _position.X + _speed;
+                    Position.Location.X = Position.Location.X + _speed;
                     break;
                 case SDirect.Top:
-                    _position.Y = _position.Y - _speed;
+                    Position.Location.Y = Position.Location.Y - _speed;
                     break;
                 case SDirect.Bottom:
-                    _position.Y = _position.Y + _speed;
+                    Position.Location.Y = Position.Location.Y + _speed;
                     break;
             }
         }

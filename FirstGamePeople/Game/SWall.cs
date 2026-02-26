@@ -9,18 +9,15 @@ namespace FirstGamePeople.Game
     public class SWall : SRenderObject
     {
         private SHealth _health = new SHealth();
-        private SPosition _position = new SPosition();
-
+        
         public SHealth Health { get => _health;}
-        public SPosition Position { get => _position;}
+        
         public SWall(int x, int y, int health) : base()
         {
-            _position.X = x;
-            _position.Y = y;
-            _position.Width = 2;
-            _position.Height = 2;
-
-            if(health > 0)
+            Position.Location = new SPoint(x, y);
+            Position.Size = new SSize(2, 2);
+            
+            if (health > 0)
             { 
                 _health.Health = 0;
             }
@@ -45,13 +42,13 @@ namespace FirstGamePeople.Game
 
             if (_health.Health < 0)
             {
-                screen.DrawString(_position.X, _position.Y, "XX");
-                screen.DrawString(_position.X, _position.Y + 1, "XX");
+                screen.DrawString(Position.Location.X, Position.Location.Y, "XX");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 1, "XX");
             }
             else
             {
-                screen.DrawString(_position.X, _position.Y, "00");
-                screen.DrawString(_position.X, _position.Y + 1, "00");
+                screen.DrawString(Position.Location.X, Position.Location.Y, "00");
+                screen.DrawString(Position.Location.X, Position.Location.Y + 1, "00");
             } 
         }
     }

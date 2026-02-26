@@ -10,6 +10,8 @@ namespace FirstGamePeople.Game
     {
         private static List<SRenderObject> _renderList = new List<SRenderObject>();
 
+        private SPosition _position = new SPosition(); 
+
         public static List<SRenderObject> RenderList
         {
             get
@@ -17,6 +19,8 @@ namespace FirstGamePeople.Game
                 return _renderList;
             }
         }
+
+        public SPosition Position { get => _position; set => _position = value; }
 
         public virtual void Draw(SScreen screen)
         {
