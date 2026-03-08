@@ -44,7 +44,9 @@ namespace FirstGamePeople.Game
         /// </summary>
         public void Draw()
         {
-            Console.Clear();
+            //Console.Clear();
+            Console.CursorLeft = 0;
+            Console.CursorTop = 0;
 
             string buffer = "";
             for (int i = 0; i < _rows; i++)

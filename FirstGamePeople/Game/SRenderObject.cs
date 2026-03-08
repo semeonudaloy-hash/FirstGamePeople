@@ -37,12 +37,14 @@ namespace FirstGamePeople.Game
             _renderList.Remove(this);
         }
 
-        // архив детей и 1 человек с которым м все это сравниваем
-        public List<SRenderObject> CheckCollision(SRenderObject obj, SDirect direct, int move, out int avaliableMove)
+        // архив детей и 1 человек с которым мы все это сравниваем
+        public static List<SRenderObject> CheckCollision(SRenderObject obj, SDirect direct, int move)
         {
             var res = new List<SRenderObject>();
 
-            avaliableMove = 0;
+            if(obj == null) return res;
+
+            SPosition newRect = obj.Position.GetMoveRect(direct, move);
 
             for (int i = 0; i < _renderList.Count; i++)
             {
@@ -53,11 +55,11 @@ namespace FirstGamePeople.Game
                     continue;
                 }
 
-
+                if(newRect.IntersectRect(checkObj._position))
+                    res.Add(checkObj);
             }
 
             return res;
         }
-
     }
 }

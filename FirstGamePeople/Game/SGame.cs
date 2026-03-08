@@ -12,8 +12,6 @@ namespace FirstGamePeople.Game
         private SScreen _screen = null;
         private STimers _timers = null;
         private SCharacter _human = null;
-        private SCharacter _human1 = null;
-        private SCharacter _human2 = null;
         private List<SFruit> _fruits = new List<SFruit>();
         private List<SWall> _walls = new List<SWall>();
 
@@ -23,15 +21,34 @@ namespace FirstGamePeople.Game
         {
             _timers = new STimers();
             _screen = new SScreen(100, 29);
-            _walls.Add(new SWall(1, 1, 10));
-            _walls.Add(new SWall(5, 5, 0));
-            _walls.Add(new SWall(10, 10, -10));
-            _walls.Add(new SWall(15, 15, -20));
-            //_fruits.Add(new SFruit(40, 10, -10));
-            //_fruits.Add(new SFruit(50, 10, 10));
-            //_fruits.Add(new SFruit(40, 20, 10));
-            //_fruits.Add(new SFruit(50, 20, -10));
-            _human = new SCharacter(20, 10, 100);
+            for (int i = 0; i < (int)_screen.Cols/2; i++)
+            {
+                _walls.Add(new SWall(2 * i, 0, 0));
+                _walls.Add(new SWall(2 * i, _screen.Rows-2, 0));
+            }
+            for (int i = 0; i < (int)_screen.Rows/2; i++)
+            {
+                _walls.Add(new SWall(0, 2 * i, 0));
+                _walls.Add(new SWall(_screen.Cols-2, 2 * i , 0));
+            }
+            for (int i = 0; i < (int)_screen.Rows / 3; i++)
+            {
+                _walls.Add(new SWall(33, 2 * i + 2, 0));
+                
+            }
+            for (int i = 0; i < (int)_screen.Rows / 3; i++)
+            {
+                _walls.Add(new SWall(66, 2 * i + 9, 0));
+
+            }
+
+            _fruits.Add(new SFruit(4, 4, -10));
+            _fruits.Add(new SFruit(90, 4, 10));
+
+            _fruits.Add(new SFruit(4, 21, -10));
+            _fruits.Add(new SFruit(90, 21, 10));
+
+            _human = new SCharacter(15, 10, 100);
             
             return "";
         }
@@ -84,47 +101,81 @@ namespace FirstGamePeople.Game
 
         public void EventKey(ConsoleKeyInfo keyInfo)
         {
-            //////////////////////////
-            if (keyInfo.Key == ConsoleKey.W)
+            SDirect direct = SDirect.None;
+            
+            switch(keyInfo.Key)
             {
-                _human?.RunTop();
+                case ConsoleKey.W:
+                    direct = SDirect.Top;
+                    break;
+                case ConsoleKey.S:
+                    direct = SDirect.Bottom;
+                    break;
+                case ConsoleKey.A:
+                    direct = SDirect.Left;
+                    break;
+                case ConsoleKey.D:
+                    direct = SDirect.Right;
+                    break;
+                case ConsoleKey.E:
+                    _human?.IncreaseSpeed();
+                    break;
+                case ConsoleKey.Q:
+                    _human?.DecreaseSpeed();
+                    break;
+                default:
+                    return;
             }
-            if (keyInfo.Key == ConsoleKey.S)
+
+            if (_human != null)
             {
-                _human?.RunBottom();
+                _human.DebugText = _human.Speed.ToString();
             }
-            if (keyInfo.Key == ConsoleKey.D)
+
+            if (direct != SDirect.None && _human != null)
             {
-                _human?.RunRight();
-            }
-            if (keyInfo.Key == ConsoleKey.A)
-            {
-                _human?.RunLeft();
-            }
-            if (keyInfo.Key == ConsoleKey.E)
-            {
-                _human?.IncreaseSpeed();
-            }
-            if (keyInfo.Key == ConsoleKey.Q)
-            {
-                _human?.DecreaseSpeed();
-            }
-            if (keyInfo.Key == ConsoleKey.P)
-            {
-                for (int i = 0; i < SRenderObject.RenderList.Count; i++)
+                int speed = _human.Speed;
+
+                if ((direct == SDirect.Top || direct == SDirect.Bottom) && speed >= 2)
                 {
-                    if (SRenderObject.RenderList[i] is SCharacter)
+                    speed = speed / 2;
+                }
+
+                for (int i = 0; i < speed; i++)
+                {
+                    List<SRenderObject> list = SRenderObject.CheckCollision(_human, direct, 1);
+
+                    bool passMove = true;
+
+                    for (int j = 0; j < list.Count; j++)
                     {
-                        SRenderObject.RenderList[i].Unregister();
-                        _human = null;
+                        if (list[j] is SWall)
+                        {
+                            passMove = false;
+                            break;
+                        }
+                    }
+
+                    if(passMove)
+                    {
+                        for (int j = 0; j < list.Count; j++)
+                        {
+                            if (list[j] is SFruit)
+                            {
+                                list[j].Unregister();
+                            }
+                        }
+                    }
+
+                    if (passMove)
+                    {
+                        _human?.Run(direct, 1);
+                    }
+                    else
+                    {
                         break;
                     }
                 }
-            }
-            if (keyInfo.Key == ConsoleKey.N)
-            {
-                if(_human == null)
-                    _human = new SCharacter(1, 1, 100);
             }
         }
 
