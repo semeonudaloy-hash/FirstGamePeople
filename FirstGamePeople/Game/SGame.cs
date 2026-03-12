@@ -20,7 +20,7 @@ namespace FirstGamePeople.Game
         public string Initialize()
         {
             _timers = new STimers();
-            _screen = new SScreen(100, 29);
+            _screen = new SScreen(100,29);
             for (int i = 0; i < (int)_screen.Cols/2; i++)
             {
                 _walls.Add(new SWall(2 * i, 0, 0));
@@ -42,7 +42,7 @@ namespace FirstGamePeople.Game
 
             }
 
-            _fruits.Add(new SFruit(4, 4, -10));
+            _fruits.Add(new SFruit(4, 8, -10));
             _fruits.Add(new SFruit(90, 4, 10));
 
             _fruits.Add(new SFruit(4, 21, -10));
@@ -160,8 +160,10 @@ namespace FirstGamePeople.Game
                     {
                         for (int j = 0; j < list.Count; j++)
                         {
-                            if (list[j] is SFruit)
+                            if (list[j] is SFruit fruit)
                             {
+                                _human?.AddHealth(fruit.Health.Health);
+                                _human?.EatedFruit();
                                 list[j].Unregister();
                             }
                         }
