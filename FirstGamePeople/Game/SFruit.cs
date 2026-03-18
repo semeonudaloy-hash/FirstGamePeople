@@ -23,8 +23,10 @@ namespace FirstGamePeople.Game
 
         public override void Draw(SScreen screen)
         {
+            screen.DrawString(Position.Location.X + 2, Position.Location.Y - 1, $"{_health.Health}");
             if (_health.Health > 0)
             {
+               
                 screen.DrawString(Position.Location.X, Position.Location.Y + 0, "  ^  ");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 1, " /.\\");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 2, "/...\\");
@@ -33,6 +35,7 @@ namespace FirstGamePeople.Game
             }
             else
             {
+                
                 screen.DrawString(Position.Location.X, Position.Location.Y + 0, "  /  ");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 1, "<^^^>");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 2, "<^^^>");

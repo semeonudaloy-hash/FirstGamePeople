@@ -12,41 +12,39 @@ namespace FirstGamePeople.Game
         private SScreen _screen = null;
         private STimers _timers = null;
         private SCharacter _human = null;
-        private List<SFruit> _fruits = new List<SFruit>();
-        private List<SWall> _walls = new List<SWall>();
+        Random _rand = null;
 
         private int _direction = 1; 
         
         public string Initialize()
         {
+            _rand = new Random();
+            _rand = new Random(_rand.Next(0, 500));
+
             _timers = new STimers();
+            _timers.StartTimer("decrease_life", 50);
+
             _screen = new SScreen(100,29);
             for (int i = 0; i < (int)_screen.Cols/2; i++)
             {
-                _walls.Add(new SWall(2 * i, 0, 0));
-                _walls.Add(new SWall(2 * i, _screen.Rows-2, 0));
+                new SWall(2 * i, 0, 0);
+                new SWall(2 * i, _screen.Rows-2, 0);
             }
             for (int i = 0; i < (int)_screen.Rows/2; i++)
             {
-                _walls.Add(new SWall(0, 2 * i, 0));
-                _walls.Add(new SWall(_screen.Cols-2, 2 * i , 0));
+                new SWall(0, 2 * i, 0);
+                new SWall(_screen.Cols-2, 2 * i , 0);
             }
             for (int i = 0; i < (int)_screen.Rows / 3; i++)
             {
-                _walls.Add(new SWall(33, 2 * i + 2, 0));
+                new SWall(33, 2 * i + 2, 0);
                 
             }
             for (int i = 0; i < (int)_screen.Rows / 3; i++)
             {
-                _walls.Add(new SWall(66, 2 * i + 9, 0));
+                new SWall(66, 2 * i + 9, 0);
 
             }
-
-            _fruits.Add(new SFruit(4, 8, -10));
-            _fruits.Add(new SFruit(90, 4, 10));
-
-            _fruits.Add(new SFruit(4, 21, -10));
-            _fruits.Add(new SFruit(90, 21, 10));
 
             _human = new SCharacter(15, 10, 100);
             
@@ -70,7 +68,7 @@ namespace FirstGamePeople.Game
                         keyInfo = Console.ReadKey(true);
                     }
 
-                    if(keyInfo.Key == ConsoleKey.Escape)
+                    if (keyInfo.Key == ConsoleKey.Escape)
                     {
                         break;
                     }
@@ -100,7 +98,7 @@ namespace FirstGamePeople.Game
         }
 
         public void EventKey(ConsoleKeyInfo keyInfo)
-        {
+        {   
             SDirect direct = SDirect.None;
             
             switch(keyInfo.Key)
@@ -117,66 +115,52 @@ namespace FirstGamePeople.Game
                 case ConsoleKey.D:
                     direct = SDirect.Right;
                     break;
-                case ConsoleKey.E:
-                    _human?.IncreaseSpeed();
-                    break;
-                case ConsoleKey.Q:
-                    _human?.DecreaseSpeed();
-                    break;
                 default:
                     return;
             }
 
-            if (_human != null)
+            int speed = _human.Speed;
+
+            if ((direct == SDirect.Top || direct == SDirect.Bottom) && speed >= 2)
             {
-                _human.DebugText = _human.Speed.ToString();
+                speed = speed / 2;
             }
 
-            if (direct != SDirect.None && _human != null)
+            for (int i = 0; i < speed; i++)
             {
-                int speed = _human.Speed;
+                List<SRenderObject> list = SRenderObject.CheckCollision(_human, direct, 1);
 
-                if ((direct == SDirect.Top || direct == SDirect.Bottom) && speed >= 2)
+                bool passMove = true;
+
+                for (int j = 0; j < list.Count; j++)
                 {
-                    speed = speed / 2;
-                }
-
-                for (int i = 0; i < speed; i++)
-                {
-                    List<SRenderObject> list = SRenderObject.CheckCollision(_human, direct, 1);
-
-                    bool passMove = true;
-
-                    for (int j = 0; j < list.Count; j++)
+                    if (list[j] is SWall)
                     {
-                        if (list[j] is SWall)
-                        {
-                            passMove = false;
-                            break;
-                        }
-                    }
-
-                    if(passMove)
-                    {
-                        for (int j = 0; j < list.Count; j++)
-                        {
-                            if (list[j] is SFruit fruit)
-                            {
-                                _human?.AddHealth(fruit.Health.Health);
-                                _human?.EatedFruit();
-                                list[j].Unregister();
-                            }
-                        }
-                    }
-
-                    if (passMove)
-                    {
-                        _human?.Run(direct, 1);
-                    }
-                    else
-                    {
+                        passMove = false;
                         break;
                     }
+                }
+
+                if(passMove)
+                {
+                    for (int j = 0; j < list.Count; j++)
+                    {
+                        if (list[j] is SFruit fruit)
+                        {
+                            _human?.AddHealth(fruit.Health.Health);
+                            _human?.EatedFruit();
+                            list[j].Unregister();
+                        }
+                    }
+                }
+
+                if (passMove)
+                {
+                    _human?.Run(direct, 1);
+                }
+                else
+                {
+                    break;
                 }
             }
         }
@@ -199,6 +183,90 @@ namespace FirstGamePeople.Game
                 }
             }
 
+            if (_timers.GetTimer("decrease_life") == 0)
+            {
+                for (int i = 0; i < SRenderObject.RenderList.Count; i++)
+                {
+                    var item = SRenderObject.RenderList[i];
+
+                    if (item is SCharacter character)
+                    {
+                        character.Health.Health--;
+                    }
+
+                    if (item is SFruit fruit)
+                    {
+                        if (fruit.Health.Health > 0)
+                        {
+                            fruit.Health.Health--;
+                        }
+
+                        if (fruit.Health.Health < 0)
+                        {
+                            fruit.Health.Health++;
+                        }
+
+                        if(fruit.Health.Health == 0)
+                        {
+                            fruit.Unregister();
+                        }
+                    }
+                }
+
+                _timers.StartTimer("decrease_life", 50);
+            }
+
+            int countFruit = 0;
+            int countHaveToFruit = 4;
+
+            for (int i = 0; i < SRenderObject.RenderList.Count; i++)
+            {
+                if (SRenderObject.RenderList[i] is SFruit)
+                {
+                    countFruit++;
+                }
+            }
+
+            if(countFruit <  countHaveToFruit)
+            {
+                for(int i = countHaveToFruit; i > countFruit;i--)
+                {
+                    int isPoison = _rand.Next(0, 3) < 2 ? 1 : -1;
+                    int health = _rand.Next(5,11) * isPoison;
+                    int x = 0;
+                    int y = 0;
+
+                    while (true)
+                    {
+                        x = _rand.Next(2, _screen.Cols - 7);
+                        y = _rand.Next(2, _screen.Rows - 7);
+
+                        SPosition fruitRect = new SPosition()
+                        {
+                            Location = new SPoint(x, y),
+                            Size = new SSize(5, 5),
+                        };
+
+                        bool noIntersect = true;
+
+                        for (int j = 0; j < SRenderObject.RenderList.Count; j++)
+                        {
+                            if (SRenderObject.RenderList[j].Position.IntersectRect(fruitRect))
+                            {
+                                noIntersect = false;
+                                break;
+                            }
+                        }
+
+                        if (noIntersect)
+                        {
+                            break;
+                        }
+                    }
+
+                    SFruit fruit = new SFruit(x, y, health);
+                }
+            }
         }
     }
 }
