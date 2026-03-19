@@ -24,7 +24,8 @@ namespace FirstGamePeople.Game
             _timers = new STimers();
             _timers.StartTimer("decrease_life", 50);
 
-            _screen = new SScreen(100,29);
+            //_screen = new SScreen(100,29);
+            _screen = new SScreen(Console.WindowWidth-1,Console.WindowHeight-1);
             for (int i = 0; i < (int)_screen.Cols/2; i++)
             {
                 new SWall(2 * i, 0, 0);
@@ -217,7 +218,7 @@ namespace FirstGamePeople.Game
             }
 
             int countFruit = 0;
-            int countHaveToFruit = 4;
+            int countHaveToFruit = 5;
 
             for (int i = 0; i < SRenderObject.RenderList.Count; i++)
             {
@@ -232,7 +233,7 @@ namespace FirstGamePeople.Game
                 for(int i = countHaveToFruit; i > countFruit;i--)
                 {
                     int isPoison = _rand.Next(0, 3) < 2 ? 1 : -1;
-                    int health = _rand.Next(5,11) * isPoison;
+                    int health = _rand.Next(5,10) * isPoison;
                     int x = 0;
                     int y = 0;
 
