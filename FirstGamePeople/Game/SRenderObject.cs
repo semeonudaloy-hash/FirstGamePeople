@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,11 @@ namespace FirstGamePeople.Game
         public void Unregister()
         {
             _renderList.Remove(this);
+        }
+
+        public static void Clear()
+        {
+            _renderList.Clear();
         }
 
         // архив детей и 1 человек с которым мы все это сравниваем

@@ -83,6 +83,9 @@ namespace FirstGamePeople.Game
             DrawString(x, y, text, 1);
         }
 
-       
+        public void DrawString(SPosition position, string text)
+        {
+            DrawString(position.Location.X, position.Location.Y, text);
+        }
     }
 }

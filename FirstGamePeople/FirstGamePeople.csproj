@@ -43,10 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\Scenes\SGameScene.cs" />
+    <Compile Include="Game\Scenes\SScene.cs" />
     <Compile Include="Game\SCharacter.cs" />
     <Compile Include="Game\SFruit.cs" />
     <Compile Include="Game\SGame.cs" />
     <Compile Include="Game\SHealth.cs" />
+    <Compile Include="Game\SPauseBlock.cs" />
     <Compile Include="Game\SPoint.cs" />
     <Compile Include="Game\SPosition.cs" />
     <Compile Include="Game\SRenderObject.cs" />

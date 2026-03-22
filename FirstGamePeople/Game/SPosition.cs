@@ -33,7 +33,7 @@ namespace FirstGamePeople.Game
             for (int i = 0; i < points.Count; i++)
             {
                 SPoint point = points[i];
-                bool tmp = this.IntersectPoint(point);
+                bool tmp = IntersectPoint(point);
                 if(tmp)
                 {
                     return true;
@@ -41,11 +41,11 @@ namespace FirstGamePeople.Game
                 
             }
 
-            points = this.GetAllVertex();
+            points = position.GetAllVertex();
             for (int i = 0; i < points.Count; i++)
             {
                 SPoint point = points[i];
-                bool tmp = position.IntersectPoint(point);
+                bool tmp = IntersectPoint(point);
                 if (tmp)
                 {
                     return true;

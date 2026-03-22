@@ -10,6 +10,10 @@ namespace FirstGamePeople.Game
     {
         private Dictionary<string,int> _timers = new Dictionary<string,int>();
         
+        private bool _pause = false;
+
+        public bool Pause { get => _pause; set => _pause = value; }
+
         public bool StartTimer(string name, int val)
 
         {
@@ -67,6 +71,8 @@ namespace FirstGamePeople.Game
         // процедура пересчета таймеров
         public void Tick()
         {
+            if (_pause) return;
+            
             var keys = _timers.Keys.ToArray();
 
             for (int i = 0; i < keys.Length; i++)
@@ -87,6 +93,11 @@ namespace FirstGamePeople.Game
 
             }
 
+        }
+
+        public void ResetAllTimers()
+        { 
+            _timers.Clear();
         }
     }
 }
