@@ -18,6 +18,7 @@ namespace FirstGamePeople.Game.Scenes
 
         public override void Initialize()
         {
+            _pause = false;
             _rand = new Random();
             _rand = new Random(_rand.Next(0, 500));
 
@@ -51,7 +52,8 @@ namespace FirstGamePeople.Game.Scenes
         {
             if(keyInfo.Key == ConsoleKey.Escape)
             {
-                return true;
+                Game.MoveToScene("Menu");
+                return false;
             }
 
             if (_pause)

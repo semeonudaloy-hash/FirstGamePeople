@@ -23,12 +23,13 @@ namespace FirstGamePeople.Game
             _timers = new STimers();
             
             _screen = new SScreen(Console.WindowWidth-1,Console.WindowHeight-1);
-            
+
             //создаём все наши сцены
-            _scenes.Add("Main",new SGameScene(this));
+            _scenes.Add("Menu", new SMenuScene(this));
+            _scenes.Add("Game", new SGameScene(this));
 
             //берём главную сцену и инициализируем её
-            _activeScene = _scenes["Main"];
+            _activeScene = _scenes["Menu"];
             _activeScene.Initialize();
 
             return "";
@@ -80,7 +81,15 @@ namespace FirstGamePeople.Game
 
         public void MoveToScene(string name)
         {
+            if (!_scenes.ContainsKey(name)) return;
 
+            _activeScene = _scenes[name];
+
+            _timers.ResetAllTimers();
+
+            SRenderObject.Clear();
+
+            _activeScene.Initialize();
         }
     }
 }
