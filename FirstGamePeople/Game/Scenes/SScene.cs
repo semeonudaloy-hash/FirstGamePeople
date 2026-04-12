@@ -21,6 +21,10 @@ namespace FirstGamePeople.Game.Scenes
 
         public virtual bool EventKey(ConsoleKeyInfo keyInfo) { return true; }
 
+
+        /// <summary>
+        /// Просто лежит в SScene
+        /// </summary>
         public virtual void Process() { }
     }
 }

@@ -8,6 +8,7 @@ namespace FirstGamePeople.Game
 {
     public class SScreen
     {
+        // зубчатый массив
         private char[,] array = null;
         private int _rows = 0; //29
         private int _cols = 0; //100
@@ -38,9 +39,9 @@ namespace FirstGamePeople.Game
                 }
             }
         }
-
+        
         /// <summary>
-        /// Отрисовка экранного буфера
+        /// Отрисовка экранного буфера 
         /// </summary>
         public void Draw()
         {
@@ -77,6 +78,7 @@ namespace FirstGamePeople.Game
                 DrawPixel(x+i*gap, y, text[i]);
             }
         }
+        
 
         public void DrawString(int x, int y, string text)
         {

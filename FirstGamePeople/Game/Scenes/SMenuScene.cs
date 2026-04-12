@@ -18,7 +18,7 @@ namespace FirstGamePeople.Game.Scenes
                 {
                     "Новая игра",
                     "Обучение",
-                    "Об ВЕЛИЧАЙШИХ",
+                    "Об авторах",
                     "Выход",
                    
                 },
@@ -30,9 +30,11 @@ namespace FirstGamePeople.Game.Scenes
            
             switch (keyInfo.Key)
             {
+                case ConsoleKey.UpArrow:
                 case ConsoleKey.W:
                     _menu.PreviousItem();
                     break;
+                case ConsoleKey.DownArrow:
                 case ConsoleKey.S:
                     _menu.NextItem();
                     break;
@@ -45,6 +47,7 @@ namespace FirstGamePeople.Game.Scenes
                         case 1:
                             return false;
                         case 2:
+                            Game.MoveToScene("About");
                             return false;
                         case 3:
                             return true;

@@ -18,6 +18,9 @@ namespace FirstGamePeople.Game
         public STimers Timers { get => _timers;}
         public SScreen Screen { get => _screen;}
 
+        /// <summary>
+        /// содание сцены, иниализация сцены, создаем объекты Timers, SScreen c параметрами 
+        /// </summary>
         public string Initialize()
         {   
             _timers = new STimers();
@@ -27,6 +30,7 @@ namespace FirstGamePeople.Game
             //создаём все наши сцены
             _scenes.Add("Menu", new SMenuScene(this));
             _scenes.Add("Game", new SGameScene(this));
+            _scenes.Add("About", new SHeroesScene(this));
 
             //берём главную сцену и инициализируем её
             _activeScene = _scenes["Menu"];
@@ -35,6 +39,9 @@ namespace FirstGamePeople.Game
             return "";
         }
 
+        /// <summary>
+        /// метод с циклом,внутри которого есть опрос клавиатуры, формируется очередной кадр, отрисовываются все игровые объекты
+        /// </summary>
         public void Start()
         {
             ConsoleKeyInfo keyInfo;
@@ -78,7 +85,7 @@ namespace FirstGamePeople.Game
 
             Console.WriteLine("Good bye!!!");
         }
-
+        //?
         public void MoveToScene(string name)
         {
             if (!_scenes.ContainsKey(name)) return;

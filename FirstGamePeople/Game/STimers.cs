@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FirstGamePeople.Game
 {
+    /// <summary>
+    /// интервалы между кадрами, сбросы таймеров
+    /// </summary>
     public class STimers
     {
         private Dictionary<string,int> _timers = new Dictionary<string,int>();
@@ -15,7 +18,6 @@ namespace FirstGamePeople.Game
         public bool Pause { get => _pause; set => _pause = value; }
 
         public bool StartTimer(string name, int val)
-
         {
             //проверяет содержит ли ключ 
             if (_timers.ContainsKey(name))
@@ -67,8 +69,11 @@ namespace FirstGamePeople.Game
                 return 0;
             }
         }
-        
-        // процедура пересчета таймеров
+
+       
+        /// <summary>
+        ///  процедура пересчета таймеров
+        /// </summary>
         public void Tick()
         {
             if (_pause) return;
@@ -94,7 +99,9 @@ namespace FirstGamePeople.Game
             }
 
         }
-
+        /// <summary>
+        /// чистит именно один объект _timers
+        /// </summary>
         public void ResetAllTimers()
         { 
             _timers.Clear();

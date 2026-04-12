@@ -9,11 +9,11 @@ namespace FirstGamePeople.Game
 {
     public class SRenderObject
     {
-        private static List<SRenderObject> _renderList = new List<SRenderObject>();
+        private static List<SRenderObject> _renderList = new List<SRenderObject>(); // создаем список
 
-        private SPosition _position = new SPosition(); 
+        private SPosition _position = new SPosition();  // создаем объект классаа позицион
 
-        public static List<SRenderObject> RenderList
+        public static List<SRenderObject> RenderList // статическое свойство
         {
             get
             {
@@ -21,24 +21,24 @@ namespace FirstGamePeople.Game
             }
         }
 
-        public SPosition Position { get => _position; set => _position = value; }
+        public SPosition Position { get => _position; set => _position = value; } // свойство для объекта
 
-        public virtual void Draw(SScreen screen)
+        public virtual void Draw(SScreen screen) // виртуальный метод дроу
         {
 
         }
 
-        public SRenderObject()
+        public SRenderObject() // конструктор с добавлением списка
         {
             _renderList.Add(this);
         }
 
-        public void Unregister()
+        public void Unregister() // удалить список
         {
             _renderList.Remove(this);
         }
 
-        public static void Clear()
+        public static void Clear() // очистить список
         {
             _renderList.Clear();
         }

@@ -33,6 +33,7 @@ namespace TestApp
             {
                 Console.WriteLine($"{key}={dict[key]}");
             }
+            List<string> people = new List<string>() { "Tom", "Maikle", "Sam",};  
         }
     }
 }

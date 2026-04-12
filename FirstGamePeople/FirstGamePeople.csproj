@@ -44,12 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Scenes\SGameScene.cs" />
+    <Compile Include="Game\Scenes\SHeroesScene.cs" />
     <Compile Include="Game\Scenes\SMenuScene.cs" />
     <Compile Include="Game\Scenes\SScene.cs" />
     <Compile Include="Game\SCharacter.cs" />
+    <Compile Include="Game\SExplosive.cs" />
     <Compile Include="Game\SFruit.cs" />
     <Compile Include="Game\SGame.cs" />
     <Compile Include="Game\SHealth.cs" />
+    <Compile Include="Game\SHeroBlock.cs" />
     <Compile Include="Game\SMenu.cs" />
     <Compile Include="Game\SPauseBlock.cs" />
     <Compile Include="Game\SPoint.cs" />
