@@ -43,7 +43,7 @@ namespace FirstGamePeople.Game
             _renderList.Clear();
         }
 
-        // архив детей и 1 человек с которым мы все это сравниваем
+        // мы имеем метод, с типом возвращаемого значения список
         public static List<SRenderObject> CheckCollision(SRenderObject obj, SDirect direct, int move)
         {
             var res = new List<SRenderObject>();

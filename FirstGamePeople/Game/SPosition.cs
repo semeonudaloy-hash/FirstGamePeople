@@ -15,6 +15,9 @@ namespace FirstGamePeople.Game
         public SPoint Location { get => _location; set => _location = value; }
         public SSize Size { get => _size; set => _size = value; }
 
+        /// <summary>
+        /// пересекающиеся поинты
+        /// </summary>
         private bool IntersectPoint(SPoint point)
         {
             if(point.X >= _location.X && 
@@ -27,6 +30,9 @@ namespace FirstGamePeople.Game
             return false;
         }
 
+        /// <summary>
+        /// пересекающиеся прямо
+        /// </summary>
         public bool IntersectRect(SPosition position)
         {
             List<SPoint> points = position.GetAllVertex();
@@ -67,6 +73,9 @@ namespace FirstGamePeople.Game
             };
         }
 
+        /// <summary>
+        /// получаем движение по прямой
+        /// </summary>
         public SPosition GetMoveRect(SDirect direct,int move)
         {
             SPosition res = null;
