@@ -20,6 +20,7 @@ namespace FirstGamePeople.Game.Scenes
                     "Обучение",
                     "Об авторах",
                     "Выход",
+                    
                    
                 },
                 0);

@@ -10,14 +10,14 @@ namespace FirstGamePeople.Game
     {
         public override void Draw(SScreen screen)
         {
-            int width = "                                     ".Length;
+            int width = "                               ".Length;
             int height = 9;
             Position.Location.X = screen.Cols / 2 - width / 2;
             Position.Location.Y = screen.Rows / 2 - height / 2;
-
+            //Position.Location.X 
             int x = Position.Location.X;
             int y = Position.Location.Y;
-            //screen.DrawString(x, y + 0, "                                     ");
+            
             //screen.DrawString(x, y + 1, " =================================== ");
             //screen.DrawString(x, y + 2, " |                                 | ");
             //screen.DrawString(x, y + 3, " |                                 | ");

@@ -55,7 +55,7 @@ namespace FirstGamePeople.Game
             }
         }
         
-        // получение текущего значения таймера
+        // получение текущего значения таймера, нужно указать произвольное название
         public int GetTimer(string name)
         {
             if (_timers.ContainsKey(name))

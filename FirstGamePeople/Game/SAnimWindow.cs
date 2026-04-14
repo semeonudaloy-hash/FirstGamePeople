@@ -10,10 +10,12 @@ namespace FirstGamePeople.Game
     public class SAnimWindow : SRenderObject
     {
         private int _num = 0;
+        private List<string> text = new List<string>();
+        
 
-        public SAnimWindow() : base()
+        public SAnimWindow(List<string> text) : base()
         {
-            
+            this.text = text;
         }
 
         public int Num 
@@ -25,11 +27,62 @@ namespace FirstGamePeople.Game
                 _num = value;
             }
         }
+        
+       
 
         public override void Draw(SScreen screen)
         {
             int cx = screen.Cols / 2;
             int cy = screen.Rows / 2;
+
+            if(_num >= 6)
+            {
+                for (int i = 0; i < text.Count; i++)
+                {
+                    string str = text[i];
+                    screen.DrawString(cx-str.Length/2,cy+i-text.Count/2,str);
+                }
+            }
+            
+            for (int i = 0; i < _num * 2; i++)
+            {
+                screen.DrawPixel(cx - _num * 4, cy - i + _num, '|');
+                screen.DrawPixel(cx + _num * 4 - 1, cy - i + _num, '|');
+
+
+            }
+            //for (int i1 = 0; i1 < text.Count; i1++)
+            //{
+            //    screen.DrawString(Position.Location.X + width / 2 - text [i1].Length / 2, Position.Location.Y + 3 * i1 + 1, text[i1]);
+            //}
+
+                for (int i = 0; i < 8 * _num; i++)
+            {
+                char c = '=';
+                if(i == 0)
+                {
+                    c = '/';
+                }
+                if (i == 8*_num - 1)
+                {
+                    c = '\\';
+                }
+                screen.DrawPixel(cx - 8 / 2 * _num + i, cy - _num, c);
+                if (i == 0)
+                {
+                    c = '\\';
+                }
+                if (i == 8 * _num - 1)
+                {
+                    c = '/';
+                }
+                screen.DrawPixel(cx - 8 / 2 * _num + i, cy + _num, c);
+                    
+
+                //screen.DrawPixel(cx - 7 / 2 * _num + i, cy - _num, '=');
+                //screen.DrawPixel(cx - 7 / 2 * _num + i, cy + _num, '=');
+            }
+           
 
             //switch(_num)
             //{
@@ -61,15 +114,6 @@ namespace FirstGamePeople.Game
             //        screen.DrawString(x - 6, y + 2, "(           )");
             //        break;
             //}
-
-            for(int i = 0;i<7*_num;i++)
-            {
-                screen.DrawPixel(cx - 7/2 * _num + i, cy - _num, '=');
-                screen.DrawPixel(cx - 7/2 * _num + i, cy + _num, '=');
-
-                //screen.DrawPixel(cx - 7 / 2 * _num + i, cy - _num, '=');
-                //screen.DrawPixel(cx - 7 / 2 * _num + i, cy + _num, '=');
-            }
         }
     }
 }

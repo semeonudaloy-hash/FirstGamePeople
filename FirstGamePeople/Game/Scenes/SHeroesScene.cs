@@ -13,7 +13,18 @@ namespace FirstGamePeople.Game.Scenes
 
         public override void Initialize()
         {
-           _explosive = new SAnimWindow();
+           _explosive = new SAnimWindow(new List<string>()
+           {
+               "Hello world 1 Hello world 1 ",
+               "Hello world 2",
+               "Hello world 3 Hello world 1 ",
+               "Hello world 1",
+               "Hello world 2 Hello world 1 ",
+               "Hello world 3",
+               "Hello world 1 Hello world 1 ",
+               "Hello world 2",
+               "Hello world 3 Hello world 1 ",
+           });
         }
 
         public override bool EventKey(ConsoleKeyInfo keyInfo)
@@ -39,15 +50,17 @@ namespace FirstGamePeople.Game.Scenes
 
                 num++;
 
-                if(num > 15)
+                if(num > 11)
                 {
-                    num = 0;
+                    num = 11;
                 }
 
                 _explosive.Num = num;
 
                 Game.Timers.StartTimer("explosive", 5);
+
                 
+
             }
         }
     }
