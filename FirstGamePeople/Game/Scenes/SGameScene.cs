@@ -16,6 +16,10 @@ namespace FirstGamePeople.Game.Scenes
 
         public SGameScene(SGame game) : base(game) { }
 
+
+        /// <summary>
+        /// прорисовывает стены,прорисовывает персонажа, ставит в рандомном положении фрукты, инициализирует таймеры
+        /// </summary>
         public override void Initialize()
         {
             _pause = false;
@@ -48,6 +52,9 @@ namespace FirstGamePeople.Game.Scenes
             _human = new SCharacter(15, 10, 100);
         }
 
+        /// <summary>
+        /// привязка кнопок к перемещению по сцене, прописываем ему скорость
+        /// </summary>
         public override bool EventKey(ConsoleKeyInfo keyInfo)
         {
             if(keyInfo.Key == ConsoleKey.Escape)
@@ -140,6 +147,10 @@ namespace FirstGamePeople.Game.Scenes
             return false;
         }
 
+
+        /// <summary>
+        /// привязка кнопок к перемещению по сцене, прописываем персонажу скорость,  закрываем-открываем глаза, уменьшаем и добавляем здоровье персонажу и фруктам 
+        /// </summary>
         public override void Process()
         {
             if (_pause) return;

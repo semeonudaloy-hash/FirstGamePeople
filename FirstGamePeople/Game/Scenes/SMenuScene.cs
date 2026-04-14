@@ -24,7 +24,9 @@ namespace FirstGamePeople.Game.Scenes
                 },
                 0);
         }
-
+        /// <summary>
+        /// кнопки их привязка к действиям 
+        /// </summary>
         public override bool EventKey(ConsoleKeyInfo keyInfo) 
         {
            

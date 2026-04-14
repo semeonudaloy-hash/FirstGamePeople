@@ -48,7 +48,7 @@
     <Compile Include="Game\Scenes\SMenuScene.cs" />
     <Compile Include="Game\Scenes\SScene.cs" />
     <Compile Include="Game\SCharacter.cs" />
-    <Compile Include="Game\SExplosive.cs" />
+    <Compile Include="Game\SAnimWindow.cs" />
     <Compile Include="Game\SFruit.cs" />
     <Compile Include="Game\SGame.cs" />
     <Compile Include="Game\SHealth.cs" />
