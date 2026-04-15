@@ -6,23 +6,24 @@ using System.Threading.Tasks;
 
 namespace FirstGamePeople.Game.Scenes
 {
-    public class SHeroesScene : SScene
+    public class SEducationScene : SScene
     {
-        private SAnimWindow _explosive = null;
-        public SHeroesScene(SGame game) : base(game) { }
+        private SEducation _educ = null;
+        public SEducationScene(SGame game) : base(game) { }
+
+
 
         public override void Initialize()
         {
-           _explosive = new SAnimWindow(new List<string>()
+            _educ = new SEducation(new List<string>()
            {
+
                "В гланых ролях в качестве разработчиков выступают:",
                "Николай Лямкин",
                "Семён Лямкин",
-               "В гланой роли в качестве моральной поддержки выступает:",
-               "Василий Лямкин",
+              
            });
         }
-
         public override bool EventKey(ConsoleKeyInfo keyInfo)
         {
 
@@ -38,26 +39,6 @@ namespace FirstGamePeople.Game.Scenes
         }
 
 
-        public override void Process()
-        {
-            if (Game.Timers.GetTimer("explosive") == 0)
-            {
-                int num = _explosive.Num;
 
-                num++;
-
-                if(num > 11)
-                {
-                    num = 11;
-                }
-
-                _explosive.Num = num;
-
-                Game.Timers.StartTimer("explosive", 5);
-
-                
-
-            }
-        }
     }
 }

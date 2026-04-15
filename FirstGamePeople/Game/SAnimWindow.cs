@@ -27,13 +27,13 @@ namespace FirstGamePeople.Game
                 _num = value;
             }
         }
-        
-       
 
+
+        
         public override void Draw(SScreen screen)
         {
             int cx = screen.Cols / 2;
-            int cy = screen.Rows / 2;
+            int cy = screen.Rows / 2; 
 
             if(_num >= 6)
             {
