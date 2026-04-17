@@ -55,8 +55,6 @@ namespace FirstGamePeople.Game.Scenes
 
                 Game.Timers.StartTimer("explosive", 5);
 
-                
-
             }
         }
     }

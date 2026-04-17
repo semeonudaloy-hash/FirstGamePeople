@@ -21,7 +21,7 @@ namespace FirstGamePeople.Game.Scenes
                "В гланых ролях в качестве разработчиков выступают:",
                "Николай Лямкин",
                "Семён Лямкин",
-              
+
            });
         }
         public override bool EventKey(ConsoleKeyInfo keyInfo)
@@ -37,8 +37,19 @@ namespace FirstGamePeople.Game.Scenes
             }
             return false;
         }
+        public override void Process()
+        {
+            if(Game.Timers.GetTimer("Education") == 0);
+            {
+                Game.Timers.StartTimer("Education", 10);
+            }
+   
+        }
 
-
-
+        
     }
 }
+
+
+   
+
