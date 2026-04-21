@@ -48,6 +48,7 @@ namespace FirstGamePeople.Game.Scenes
                             Game.MoveToScene("Game");
                             return false;
                         case 1:
+                            Game.MoveToScene("Education");
                             return false;
                         case 2:
                             Game.MoveToScene("About");

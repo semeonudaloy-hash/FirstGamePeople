@@ -19,13 +19,10 @@ namespace FirstGamePeople.Game
             }
         }
 
-
-
-        private List<string> _education = new List<string>();
-
-        public SEducation(List<string> text) : base()
+       
+        public SEducation() : base()
         {
-            this._education = text;
+          
         }
         public override void Draw(SScreen screen)
         {
@@ -37,19 +34,21 @@ namespace FirstGamePeople.Game
             int x = Position.Location.X;
             int y = Position.Location.Y;
 
-            screen.DrawString(x, y + 0, "                                     ");
-            screen.DrawString(x, y + 1, " =================================== ");
-            screen.DrawString(x, y + 2, " |                                 | ");
-            screen.DrawString(x, y + 3, " |                                 | ");
-            screen.DrawString(x, y + 4, " |            P A U S E            | ");
-            screen.DrawString(x, y + 5, " |                                 | ");
+            screen.DrawString(x, y + 0, "                Оглавление                ");
+            screen.DrawString(x, y + 1, " Эта игра, в которой вам предстоит бегать ");
+            screen.DrawString(x, y + 2, " и собирать фрукты. По достижению 0 очков ");
+            screen.DrawString(x, y + 3, "жизни, ваш персонаж умирает. По достяжению");
+            screen.DrawString(x, y + 4, "                                    ");
+            screen.DrawString(x, y + 5, " По достижению 0 очков ");
             screen.DrawString(x, y + 6, " |                                 | ");
             screen.DrawString(x, y + 7, " =================================== ");
             screen.DrawString(x, y + 8, "                                     ");
 
         }
 
-
+        //screen.DrawString(x, y + 1, "Для перемещения персонажа используйте");
+        //    screen.DrawString(x, y + 2, "         клавиши W, A, S, D                   ");
+        //    screen.DrawString(x, y + 3, "Для выхода из игры используйте Esc");
 
 
     }

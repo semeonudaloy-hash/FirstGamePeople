@@ -24,7 +24,7 @@ namespace FirstGamePeople.Game.Scenes
         {
             _pause = false;
             _rand = new Random();
-            _rand = new Random(_rand.Next(0, 500));
+            _rand = new Random(_rand.Next(0, 500)); 
 
             Game.Timers.StartTimer("decrease_life", 50);
 
@@ -253,7 +253,7 @@ namespace FirstGamePeople.Game.Scenes
                     }
 
                     SFruit fruit = new SFruit(x, y, health);
-                }
+                } 
             }
         }
     }

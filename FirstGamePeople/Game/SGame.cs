@@ -31,6 +31,7 @@ namespace FirstGamePeople.Game
             _scenes.Add("Menu", new SMenuScene(this));
             _scenes.Add("Game", new SGameScene(this));
             _scenes.Add("About", new SHeroesScene(this));
+            _scenes.Add("Education", new SEducationScene(this));
 
             //берём главную сцену и инициализируем её
             _activeScene = _scenes["Menu"];

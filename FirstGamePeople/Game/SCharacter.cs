@@ -19,6 +19,7 @@ namespace FirstGamePeople.Game
     {
         private SHealth _health = new SHealth();
         private bool _isOpenEyes = true;
+        private bool havetable = true;
         private string _debugText = "";
         private int _speed = 5;
         private int _eatingFruit = 0;
@@ -29,7 +30,7 @@ namespace FirstGamePeople.Game
         public int Speed { get => _speed;}
         public int EatingFruit { get => _eatingFruit;}
 
-        public SCharacter(int x, int y, int health) : base()
+        public SCharacter(int x, int y, int health, bool havetable ) : base()
         {
             Position.Location = new SPoint(x, y);
             Position.Size = new SSize(6, 4);
@@ -69,14 +70,25 @@ namespace FirstGamePeople.Game
 
             screen.DrawString(Position.Location.X, Position.Location.Y + 2, "| -- |");
             screen.DrawString(Position.Location.X, Position.Location.Y + 3, "\\____/");
+            if(havetable)
+            {
+                screen.DrawString(0, 0, $"=============================");
+                screen.DrawString(0, 1, $"#                           #");
+                screen.DrawString(0, 2, $"#                           #");
+                screen.DrawString(0, 3, $"#                           #");
+                screen.DrawString(0, 4, $"#                           #");
+                screen.DrawString(0, 5, $"=============================");
+            }
+            else
+            {
+                screen.DrawString(0, 0, $"                             ");
+                screen.DrawString(0, 1, $"                             ");
+                screen.DrawString(0, 2, $"                             ");
+                screen.DrawString(0, 3, $"                             ");
+                screen.DrawString(0, 4, $"                             ");
+                screen.DrawString(0, 5, $"                             ");
 
-            screen.DrawString(0, 0, $"=============================");
-            screen.DrawString(0, 1, $"#                           #");
-            screen.DrawString(0, 2, $"#                           #");
-            screen.DrawString(0, 3, $"#                           #");
-            screen.DrawString(0, 4, $"#                           #");
-            screen.DrawString(0, 5, $"=============================");
-
+            }
             screen.DrawString(3, 2, $"Количество фруктов - {_eatingFruit}");
 
             screen.DrawString(3, 3, $"Количество жизни   - {_health.Health}");
