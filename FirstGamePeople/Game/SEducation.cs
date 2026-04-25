@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FirstGamePeople.Game
 {
-    public class SEducation : SRenderObject
+    public  class SEducation : SRenderObject
     {
         private int _num = 0;
         public int Num
@@ -24,6 +24,10 @@ namespace FirstGamePeople.Game
         {
           
         }
+       
+       
+       
+       
         public override void Draw(SScreen screen)
         {
             int width = "                                     ".Length;
