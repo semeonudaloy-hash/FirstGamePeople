@@ -55,6 +55,7 @@
     <Compile Include="Game\SGame.cs" />
     <Compile Include="Game\SHealth.cs" />
     <Compile Include="Game\SMenu.cs" />
+    <Compile Include="Game\SOverBlock.cs" />
     <Compile Include="Game\SPauseBlock.cs" />
     <Compile Include="Game\SPoint.cs" />
     <Compile Include="Game\SPosition.cs" />

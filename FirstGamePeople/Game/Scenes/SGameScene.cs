@@ -127,6 +127,7 @@ namespace FirstGamePeople.Game.Scenes
                             if (list[j] is SFruit fruit)
                             {
                                 _human?.AddHealth(fruit.Health.Health);
+                                _human?.AddHealth(fruit.Health.Health);
                                 _human?.EatedFruit();
                                 list[j].Unregister();
                             }

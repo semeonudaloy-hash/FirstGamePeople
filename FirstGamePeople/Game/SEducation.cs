@@ -49,6 +49,11 @@ namespace FirstGamePeople.Game
             screen.DrawString(x, y + 8, "                                     ");
 
         }
+        public void RunToFriut()
+        {
+            // y = kx + b
+
+        }
 
         //screen.DrawString(x, y + 1, "Для перемещения персонажа используйте");
         //    screen.DrawString(x, y + 2, "         клавиши W, A, S, D                   ");

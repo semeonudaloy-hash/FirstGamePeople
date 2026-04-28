@@ -45,15 +45,19 @@ namespace FirstGamePeople.Game.Scenes
                 int num = _explosive.Num;
 
                 num++;
+                if (num == 6)
+                {
+                    num++;
+                }
 
-                if(num > 11)
+                if (num > 11)
                 {
                     num = 11;
                 }
 
                 _explosive.Num = num;
 
-                Game.Timers.StartTimer("explosive", 5);
+                Game.Timers.StartTimer("explosive", 15);
 
             }
         }

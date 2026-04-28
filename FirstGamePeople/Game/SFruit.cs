@@ -10,7 +10,8 @@ namespace FirstGamePeople.Game
     public class SFruit : SRenderObject
     {
         private SHealth _health = new SHealth();
-        
+        private bool _zeroFruit  = true;
+
         public SHealth Health { get => _health; set => _health = value; }
         
         public SFruit(int x, int y, int health) : base()
@@ -23,10 +24,17 @@ namespace FirstGamePeople.Game
 
         public override void Draw(SScreen screen)
         {
-            screen.DrawString(Position.Location.X + 2, Position.Location.Y - 1, $"{_health.Health}");
+            if (_zeroFruit)
+            {
+                screen.DrawString(Position.Location.X + 2, Position.Location.Y - 1, $"{_health.Health}");
+            }
+            else
+            {
+
+            } 
             if (_health.Health > 0)
             {
-               
+
                 screen.DrawString(Position.Location.X, Position.Location.Y + 0, "  ^  ");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 1, " /.\\");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 2, "/...\\");
@@ -35,13 +43,17 @@ namespace FirstGamePeople.Game
             }
             else
             {
-                
+
                 screen.DrawString(Position.Location.X, Position.Location.Y + 0, "  /  ");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 1, "<^^^>");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 2, "<^^^>");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 3, "<^^^>");
                 screen.DrawString(Position.Location.X, Position.Location.Y + 4, "<___>");
             }
+        }
+        public void ZeroFruit()
+        {
+            _zeroFruit = false;
         }
     }
 }
