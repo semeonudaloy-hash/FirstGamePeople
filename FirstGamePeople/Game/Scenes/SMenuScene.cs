@@ -20,8 +20,9 @@ namespace FirstGamePeople.Game.Scenes
                     "Обучение",
                     "Об авторах",
                     "Выход",
-                    
-                   
+                    "окончание",
+
+
                 },
                 0);
         }
@@ -54,6 +55,9 @@ namespace FirstGamePeople.Game.Scenes
                             Game.MoveToScene("About");
                             return false;
                         case 3:
+                            return true;
+                        case 4:
+                            Game.MoveToScene("Over");
                             return true;
                         default:
                             return false;

@@ -182,7 +182,11 @@ namespace FirstGamePeople.Game.Scenes
                     {
                         character.Health.Health--;
                     }
+                    /////////////////////////////////////////
+                    //if(_health.Health == 0)
+                    //{
 
+                    //}
                     if (item is SFruit fruit)
                     {
                         if (fruit.Health.Health > 0)

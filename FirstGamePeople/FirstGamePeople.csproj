@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\SOver.cs" />
     <Compile Include="Game\Scenes\SEducationScene.cs" />
+    <Compile Include="Game\Scenes\SOverScene.cs" />
     <Compile Include="Game\Scenes\SGameScene.cs" />
     <Compile Include="Game\Scenes\SHeroesScene.cs" />
     <Compile Include="Game\Scenes\SMenuScene.cs" />
@@ -55,7 +57,6 @@
     <Compile Include="Game\SGame.cs" />
     <Compile Include="Game\SHealth.cs" />
     <Compile Include="Game\SMenu.cs" />
-    <Compile Include="Game\SOverBlock.cs" />
     <Compile Include="Game\SPauseBlock.cs" />
     <Compile Include="Game\SPoint.cs" />
     <Compile Include="Game\SPosition.cs" />
