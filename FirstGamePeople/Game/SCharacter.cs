@@ -83,16 +83,7 @@ namespace FirstGamePeople.Game
 
                 screen.DrawString(3, 3, $"Количество жизни   - {_health.Health}");
             }
-            //else
-            //{
-            //    screen.DrawString(0, 0, $"                             ");
-            //    screen.DrawString(0, 1, $"                             ");
-            //    screen.DrawString(0, 2, $"                             ");
-            //    screen.DrawString(0, 3, $"                             ");
-            //    screen.DrawString(0, 4, $"                             ");
-            //    screen.DrawString(0, 5, $"                             ");
-
-            //}
+           
            
 
         }

@@ -16,15 +16,14 @@ namespace FirstGamePeople.Game.Scenes
         {
             _overtext = new SAnimWindow(new List<string>()
            {
-               "Собирайте на время фрукты и будет вам счастье!!!! ",
-               "                                                  ",
-               "- Для перехода c меню в игру используйте Enter    ",
-               "- Для передвижения используйте клавиши(W, A, S, D)",
-               "- Для приостановки игры нажите Space bar          ",
-               "- Для выхода из игры в галвное меню нажмите Esc   ",
-               "               Приятной игры!                     ",
+               "Сожалею, но вы проиграли",
+               "           ",
+               "   |   |   ",
+               "   |   |   ",
+               "           ",
+               "  _______  ",
+               " /       \\",
            });
-
 
 
         }
@@ -43,12 +42,29 @@ namespace FirstGamePeople.Game.Scenes
         }
         public override void Process()
         {
-            if (Game.Timers.GetTimer("OverTimer") == 0)
+            if (Game.Timers.GetTimer("Over") == 0)
             {
                 int num = _overtext.Num;
 
-                Game.Timers.StartTimer("OverTimer", 15);
+                num++;
+                if (num == 6)
+                {
+                    num++;
+                }
+
+                if (num > 8)
+                {
+                    num = 8;
+                }
+
+                _overtext.Num = num;
+
+                Game.Timers.StartTimer("Over", 1);
             }
+        }
+        public void MoveDownSmiley()
+        {
+            //if()
         }
     }   
 }

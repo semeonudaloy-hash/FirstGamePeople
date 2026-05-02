@@ -49,7 +49,7 @@ namespace FirstGamePeople.Game.Scenes
 
             }
 
-            _human = new SCharacter(15, 10, 100);
+            _human = new SCharacter(15, 10, 10);
         }
 
         /// <summary>
@@ -182,11 +182,8 @@ namespace FirstGamePeople.Game.Scenes
                     {
                         character.Health.Health--;
                     }
-                    /////////////////////////////////////////
-                    //if(_health.Health == 0)
-                    //{
-
-                    //}
+                   
+                    
                     if (item is SFruit fruit)
                     {
                         if (fruit.Health.Health > 0)
@@ -203,6 +200,11 @@ namespace FirstGamePeople.Game.Scenes
                         {
                             fruit.Unregister();
                         }
+                    }
+                    if (_human.Health.Health <= 0) //////
+                    {
+                        Game.MoveToScene("Over");
+                        return;
                     }
                 }
 

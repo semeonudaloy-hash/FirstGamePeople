@@ -133,7 +133,7 @@ namespace FirstGamePeople.Game.Scenes
                     _fruit.Position.Location.X = _rand.Next(0, 120 - 6);
                     _fruit.Position.Location.Y = _rand.Next(0, 29 - 7);
                     _fruit.Health.Health = _rand.Next(0, 2);
-
+                    
                     //K
                     _Ugol = (1.0f * (_human2.Position.Location.Y - (_fruit.Position.Location.Y))) / (1.0f * (_human2.Position.Location.X - (_fruit.Position.Location.X)));
 

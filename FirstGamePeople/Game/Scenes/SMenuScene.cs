@@ -56,9 +56,6 @@ namespace FirstGamePeople.Game.Scenes
                             return false;
                         case 3:
                             return true;
-                        case 4:
-                            Game.MoveToScene("Over");
-                            return true;
                         default:
                             return false;
                     }
