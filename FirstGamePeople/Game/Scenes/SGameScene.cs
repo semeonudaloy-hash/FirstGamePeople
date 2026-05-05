@@ -45,6 +45,11 @@ namespace FirstGamePeople.Game.Scenes
             }
             for (int i = 0; i < (int)Game.Screen.Rows / 3; i++)
             {
+                new SWall(89, 2 * i + 2, 0);
+
+            }
+            for (int i = 0; i < (int)Game.Screen.Rows / 3; i++)
+            {
                 new SWall(66, 2 * i + 9, 0);
 
             }
