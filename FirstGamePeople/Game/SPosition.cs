@@ -22,7 +22,7 @@ namespace FirstGamePeople.Game
         {
             if(point.X >= _location.X && 
                 point.X < _location.X + _size.Width &&
-                point.Y >= _location.Y &&
+                point.Y >= _location.Y && 
                 point.Y < _location.Y + _size.Height)
             {
                 return true;

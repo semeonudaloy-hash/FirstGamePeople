@@ -16,6 +16,46 @@ namespace FirstGamePeople.Game.Scenes
 
         public SGameScene(SGame game) : base(game) { }
 
+        public void CreateWAlls(int x, int y, int countBlocks, bool isVertical)
+        {
+            int x2 = 0;
+            x2 = x;
+            int CheckBlocks = 0;
+            //CheckBlocks -= x2;
+            for (int i = 0; i < countBlocks; i++)
+            {
+                if (isVertical)
+                {
+                    if (CheckBlocks <= countBlocks)
+                    {
+                        CheckBlocks++;
+                        new SWall(x, y, 0);
+                        y += 2;
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    if (CheckBlocks <= countBlocks)
+                    {
+                        CheckBlocks++;
+                        new SWall(x, y, 0);
+                        x += 2;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+            }
+
+       
+        }
 
         /// <summary>
         /// прорисовывает стены,прорисовывает персонажа, ставит в рандомном положении фрукты, инициализирует таймеры
@@ -28,6 +68,23 @@ namespace FirstGamePeople.Game.Scenes
 
             Game.Timers.StartTimer("decrease_life", 50);
 
+            //34 48
+            CreateWAlls(32, 2, 3, true);
+            CreateWAlls(2, 7, 16, false);
+            CreateWAlls(10, 9, 3, true);
+            CreateWAlls(23, 15, 3, true);
+            CreateWAlls(2, 19, 11, false);
+            CreateWAlls(42, 6, 7, true);
+            CreateWAlls(54, 2, 10, true);
+            CreateWAlls(42, 12, 6, false);
+            CreateWAlls(42, 12, 6, false);
+            CreateWAlls(68, 7, 10, true);
+            CreateWAlls(68, 7, 7, false);
+            CreateWAlls(95, 2, 5, true);
+            CreateWAlls(80, 20, 4, true);
+            CreateWAlls(80, 20, 10, false);
+
+
             for (int i = 0; i < Game.Screen.Cols / 2; i++)
             {
                 new SWall(2 * i, 0, 0);
@@ -38,24 +95,30 @@ namespace FirstGamePeople.Game.Scenes
                 new SWall(0, 2 * i, 0);
                 new SWall(Game.Screen.Cols - 2, 2 * i, 0);
             }
-            for (int i = 0; i < (int)Game.Screen.Rows / 3; i++)
-            {
-                new SWall(33, 2 * i + 2, 0);
+            //for (int i = 0; i < (int)Game.Screen.Rows / 3; i++)
+            //{
+            //    new SWall(33, 2 * i + 2, 0);
 
-            }
-            for (int i = 0; i < (int)Game.Screen.Rows / 3; i++)
-            {
-                new SWall(89, 2 * i + 2, 0);
+            //}
+            //for (int i = 0; i < (int)Game.Screen.Rows / 3; i++)
+            //{
+            //    new SWall(89 , 2 * i + 2, 0);
 
-            }
-            for (int i = 0; i < (int)Game.Screen.Rows / 3; i++)
-            {
-                new SWall(66, 2 * i + 9, 0);
+            //}
+            //for (int i = 0; i < (int)Game.Screen.Rows / 3; i++)
+            //{
+            //    new SWall(66, 2 * i + 9, 0);
 
-            }
+            //}
+            //for (int i = 0; i < (int)Game.Screen.Rows / 2; i++)
+            //{
+            //    new SWall(22, 2 * i + 9, 0);
+            //}
+
 
             _human = new SCharacter(15, 10, 10);
         }
+
 
         /// <summary>
         /// привязка кнопок к перемещению по сцене, прописываем ему скорость
@@ -186,6 +249,7 @@ namespace FirstGamePeople.Game.Scenes
                     if (item is SCharacter character)
                     {
                         character.Health.Health--;
+                        
                     }
                    
                     
@@ -198,7 +262,7 @@ namespace FirstGamePeople.Game.Scenes
 
                         if (fruit.Health.Health < 0)
                         {
-                            fruit.Health.Health++;
+                            fruit.Health.Health ++;
                         }
 
                         if (fruit.Health.Health == 0)
@@ -241,6 +305,7 @@ namespace FirstGamePeople.Game.Scenes
                         x = _rand.Next(2, Game.Screen.Cols - 7);
                         y = _rand.Next(2, Game.Screen.Rows - 7);
 
+                       
                         SPosition fruitRect = new SPosition()
                         {
                             Location = new SPoint(x, y),
